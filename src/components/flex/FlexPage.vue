@@ -1,0 +1,80 @@
+<template>
+  <div class="wrapper">
+  <header class="header">Header</header>
+  <article class="main">
+    <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>  
+  </article>
+  <aside class="aside aside-1">Aside 1</aside>
+  <aside class="aside aside-2">Aside 2</aside>
+  <footer class="footer">Footer</footer>
+</div>
+</template>
+
+<script>
+
+export default {
+  name: "FlexPage",
+  data(){
+    return{
+      
+    }
+  },
+  computed: {},
+  methods: {
+    
+  },
+};
+</script>
+
+<style lang="scss" scoped>
+.wrapper {
+  display: flex;  
+  flex-flow: row wrap;
+  font-weight: bold;
+  text-align: center; 
+}
+
+.wrapper > * {
+  /* par défaut, grow 1 et basis 100% donc prend toute la place*/
+  padding: 10px;
+  flex: 1 100%;
+}
+
+.header {
+  background: tomato;
+}
+
+.footer {
+  background: lightgreen;
+}
+
+.main {
+  text-align: left;
+  background: deepskyblue;
+}
+
+.aside-1 {
+  background: gold;
+}
+
+.aside-2 {
+  background: hotpink;
+}
+
+@media all and (min-width: 600px) {
+  .aside { flex: 1 0 0; } /* jusqu'à 600px*/
+}
+
+@media all and (min-width: 800px) {
+  .main    { flex: 3 0px; } /* vue qu'on passe en 0px mais 3 de grow, les autres éléments à basis 100% passent en grow*/
+  .aside-1 { order: 1; }  /* on change également l'ordre jusqu'à 800px */
+  .main    { order: 2; }
+  .aside-2 { order: 3; }
+  .footer  { order: 4; }
+}
+
+body {
+  padding: 2em; 
+}
+
+</style>

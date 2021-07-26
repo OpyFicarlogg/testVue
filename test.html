@@ -1,0 +1,114 @@
+<html>
+<header>
+</header>
+<body>
+	<nav class="nav">
+		<ul>
+	      <li class="nav__link nav__link--active">work</li>
+	      <li class="nav__link"> <a href="/about.html">about</a> </li>
+	      <li class="nav__link"> <a href="/contact.html">contact</a>  </li>
+	  	</ul>
+	</nav>
+
+	<div class="flex">
+		<h1 class="test">  hey ! </h1>
+		<h1 class="test">  hey ! </h1>
+	</div>
+
+
+	<section class="proj-prev proj-prev--mint">
+	  <div class="proj-prev__image">
+	      <img src="https://www.google.com/photos/about/static/images/logos/logo_photos_192px.svg" alt="project title goes here" >
+	  </div>
+	  <h1 class="proj-prev__heading">
+	      Project Title
+	  </h1>
+	  <p class="proj-prev__byline">
+	      project keywords would go here
+	  </p>
+	</section>
+
+
+	<section class="ticket-encours">
+		<ul class="ticket-encours__liste">
+			<li>un Ticket</li>
+			<li>un autre Ticket</li>
+		</ul>
+		<div class="ticket-encours__compteur">2 tickets</div>
+	</section>
+	
+</body>
+
+
+</html>
+
+<style>
+
+.proj-prev__heading{
+	font-size:4rem;
+	padding-left:2.5rem;
+	margin:0;
+	line-height: 6rem;
+}
+
+.proj-prev--mint{
+	color: #15DEA5;
+}
+
+
+.nav {
+	padding-right: 6rem;
+	text-align: right;
+}
+
+.nav__link {
+	display: inline;
+	font-size: 3rem;
+	padding-left: 1.5rem;
+
+}
+
+.nav__link a {
+	text-decoration: none;
+	color: #D6FFF5;
+}
+
+
+.nav__link--active {
+	color: #001534;
+}
+
+.nav__link a:hover {
+	color: #fff;
+}
+
+
+
+
+
+
+
+
+
+
+.flex{
+	display:flex;
+	flex-direction:column; 
+	justify-content:center;
+	align-items:center;
+	background-color:cornflowerblue;
+	color:lightslategrey;
+	border-radius: 5px;
+}
+
+.test{
+	background-color: lightyellow;
+	padding: 20px 70px 20px 70px;
+	border-radius:5px;
+	box-shadow: 3px 3px 2px rgb(115, 117, 116);
+}
+
+.test:hover{
+	box-shadow: 8px 8px 2px rgb(115, 117, 116);
+}
+</style>
