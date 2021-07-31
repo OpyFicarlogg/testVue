@@ -21,31 +21,45 @@
                     </div>
                     <transition name="fade">
                         <div class="object__dropdown" v-if="active == index">
-                            <div class="object__dropdown__app">
-                                <input type="text" name=""  placeholder="Application">
+
+                            <div class="object__dropdown__app floating-label">
+                                <input type="text" name="application"   required>
+                                <label for="application">Application</label>
                                 <img :src="getImg('arrow.svg')" alt="">
-                                <div class="options">
+                                <div class="floating-label__options">
                                     <div>a</div>
                                     <div>a</div>
                                     <div>a</div>
                                     <div>a</div>
-                                    <div>a</div>
+                                    <div>b</div>
                                 </div>
                             </div>
 
-                            <div class="object__dropdown__category">
-                                <input type="text" name=""  placeholder="Todo">
+                            <div class="object__dropdown__category floating-label">
+                                <input type="text" name="category"  required>
+                                <label for="category">Catégorie</label>
                                 <img :src="getImg('arrow.svg')" alt="">
                             </div>
 
-                            <div class="object__dropdown__type">
-                                <input type="text" name=""  placeholder="Type">
+                            <div class="object__dropdown__type floating-label">
+                                <input type="text" name="type"   required>
+                                <label for="type">Type</label>
                                 <img :src="getImg('arrow.svg')" alt="">
                             </div>
 
-                            <input type="text" name="" class="object__dropdown__redirect" placeholder="redirect">
-                            <input type="text" name="" class="object__dropdown__request" placeholder="request">
-                            <textarea  class="object__dropdown__description" placeholder="description"></textarea>
+                            <div class="object__dropdown__redirect floating-label">
+                                <input type="text" name="redirect"  required>
+                                 <label for="redirect">Redirect</label>
+                            </div>
+                            <div class="object__dropdown__request floating-label">
+                                <input type="text" name="request"  required>
+                                <label for="request">Request</label>
+                            </div>
+                            <div class="object__dropdown__description floating-label">
+                                <textarea   name="description" required></textarea>
+                                <label for="description">Description</label>
+                            </div>
+                            
                             <button class="object__dropdown__submit">Valider</button>
 
                             <label  class="object__dropdown__opt" >
@@ -104,33 +118,12 @@ export default {
 
 <style lang="scss" scoped>
 
+    @import "@/assets/css/Base/_base.scss";
+    @import "@/assets/css/Layout/_menu.scss";
+    @import "@/assets/css/Utils/_mixins.scss";
+    @import "@/assets/css/Composants/_inputs.scss";
 
-    @mixin tag{
-        color: #A0A0A0;
-        height:25px;
-        line-height:25px;
-        border-radius:5px;
-        text-align: center;
-        background-color:#F1F1F1;
-    }
-
-     @mixin inputOptions(){
-
-        position:relative;
-        width:190px;
-        & input {
-            width: 100%;
-            height:100%;
-        }
-
-        & img {
-            position:absolute;
-            top: 50%;
-            transform: translateX(-30px) translateY(-50%);
-            width:20px;
-            filter: invert(70%) sepia(49%) saturate(0%) hue-rotate(0deg) brightness(95%) contrast(106%);
-        }
-    }
+    
     
 
 
@@ -148,6 +141,8 @@ export default {
         height:100%;
 
     }
+
+    
     .object{
         
         width:1000px;
@@ -157,7 +152,7 @@ export default {
             height:120px;
             background-color:hsl(0, 0%, 100%);
             border-radius:8px 8px 8px 8px;
-            transition: border-radius .5s;
+            transition: border-radius .5s ease-out;
             text-align:initial;
 
             display:grid;
@@ -244,60 +239,32 @@ export default {
             " . submit submit opt";
 
             justify-items:center;
-
-
-           & input, textarea {
-               background-color: #F4F6FA;
-               color:#BFBFBF;
-               border:none;
-               border-radius: 5px;
-               padding: 10px 40px 10px 10px;
-               resize: none;
-
-               &::placeholder{
-                   color:#BFBFBF;
-               }
-
-               &:focus{
-                   box-shadow: inset 0px 1px 4px -3px black;
-               }
-            
-
-           } 
-
-
-           
+          
             &__app{
                 grid-area: app;
-
-                @include inputOptions();
             }
 
             &__category{
                 grid-area: category;
-
-                @include inputOptions();
             }
 
             &__type{
                 grid-area: type;
-
-                @include inputOptions();
             }
 
             &__redirect{
                 grid-area: redirect;
-                width:380px;
+                width:$medium-input;
             }
 
             &__request{
                 grid-area: request;
-                width:380px;
+                width:$medium-input;
             }
             
             &__description{
                 grid-area: description;
-                width:820px;
+                width:$large-input;
             }
 
             &__submit{
@@ -338,9 +305,6 @@ export default {
 }
 
 
-input:focus, textarea:focus, select:focus, button:focus{
-        outline: none;
-    }
 
 
 
@@ -357,98 +321,5 @@ input:focus, textarea:focus, select:focus, button:focus{
 
 
 
-    .container-left{
-        display:flex;
-        flex-direction:column;
-        justify-content: space-evenly;
-        background-color:rgb(33, 99, 185);
-        height:100vh;
-        width:90px;
-        position:fixed;
-        left:0px;
-        top:0px;
-        padding:0;
-
-    }
-
-
-    .elem-left{
-        display:flex;
-        height:70px;
-        width:250px;
-        line-height: 70px;
-        background-color:rgb(33, 99, 185);
-        border-radius: 0px 15px 15px 0px;
-        transition: 0.5s ease-in-out;
-        transform:translateX(-160px);
-
-        &:hover{
-            transform:translateX(0px);
-        }
-        
-        &__img{
-            padding: 0px 21px 0px 21px;
-            
-        }
-        &__txt{
-            color:white;
-            font-weight: 600;
-            height:100%;
-            width:100%;
-            padding: 0px 15px 0px 15px;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            text-align: center;
-            vertical-align: middle;
-        }
-    }
-
-
-
-
-
-    .container{
-        display:flex;
-        flex-direction:column;
-        justify-content: space-evenly;
-        background-color:rgb(33, 99, 185);
-        height:100vh;
-        width:90px;
-        position:fixed;
-        right:0px;
-        top:0px;
-        padding:0;
-
-    }
-
-    .elem{
-        display:flex;
-        height:70px;
-        width:250px;
-        line-height: 70px;
-        background-color:rgb(33, 99, 185);
-        border-radius: 0px 15px 15px 0px;
-        transition: 0.5s ease-in-out;
-
-        &:hover{
-            transform:translateX(-160px)
-        }
-        
-        &__img{
-            padding: 0px 0px 0px 21px;
-            
-        }
-        &__txt{
-            color:white;
-            font-weight: 600;
-            height:100%;
-            width:100%;
-            padding: 0px 15px 0px 15px;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            text-align: center;
-            vertical-align: middle;
-        }
-    }
     
 </style>

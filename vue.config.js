@@ -1,15 +1,32 @@
-module.exports = {
+/*module.exports = {
   configureWebpack: (config) => {
     config.devtool = "eval-source-map";
   },
-  /*css: {
+
+
+
+  css: {
 		loaderOptions: {
 		  sass: {
 			data: `@import "@/styles/_variables.scss";`
 		  }
 		}
-	  }*/
-};
+	  }
+};*/
+
+
+module.exports = {
+	configureWebpack:{
+		devtool:'source-map'
+	},
+	css: {
+	  loaderOptions: {
+		sass: {
+			prependData: `@import "@/assets/css/Utils/_variables.scss";`,
+		},
+	  },
+	},
+  };
 
 /*
 configureWebpack: {
