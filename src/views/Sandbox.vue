@@ -21,24 +21,22 @@
                     </div>
                     <transition name="fade">
                         <div class="object__dropdown" v-if="active == index">
-
+                            <!-- type: dropdown, input, textarea || data: source || name: application --> 
                             <div class="object__dropdown__app floating-label">
-                                <input type="text" name="application"   required>
+                                <input type="text" name="application" v-model="searchKey"  required>
                                 <label for="application">Application</label>
                                 <img :src="getImg('arrow.svg')" alt="">
                                 <div class="floating-label__options">
-                                    <div>a</div>
-                                    <div>a</div>
-                                    <div>a</div>
-                                    <div>a</div>
-                                    <div>b</div>
+                                    <div @click="dropdownInputValue($event,option)" v-for="(option,index) in optionsFilter" :key="index">
+                                        {{option}}
+                                    </div>
                                 </div>
                             </div>
 
                             <div class="object__dropdown__category floating-label">
                                 <input type="text" name="category"  required>
                                 <label for="category">Catégorie</label>
-                                <img :src="getImg('arrow.svg')" alt="">
+                                <img :src="getImg('arrow.svg')" @click="focusInput()">
                             </div>
 
                             <div class="object__dropdown__type floating-label">
@@ -60,7 +58,7 @@
                                 <label for="description">Description</label>
                             </div>
                             
-                            <button class="object__dropdown__submit">Valider</button>
+                            <button class="object__dropdown__submit" @click="test()">Valider</button>
 
                             <label  class="object__dropdown__opt" >
                                 <input type="checkbox" style="margin-right:10px;"> 
@@ -103,15 +101,30 @@ export default {
         {id:4, title: "Pascal", tag:"epic",state:false},
         {id:5, title: "Eric", tag:"epic",state:false},
       ],
+      options:["a","ab","abc","adb","bad","ba","b"],
+      searchKey:"",
       active:-1,
       show: true,
     }
   },
-  computed: {},
+  computed: {
+    optionsFilter(){
+    return this.options.filter((option) => {
+            return option.toLowerCase().includes(this.searchKey);
+    });
+    },
+    console: () => console,
+    window: () => window,
+  },
   methods: {
-       getImg(value) {
+    getImg(value) {
         return require("@/assets/" + value);
     },
+    dropdownInputValue(event,value){
+        var input = event.currentTarget.parentElement.parentElement.getElementsByTagName("input")[0];
+        input.value = value;
+        
+    },    
   },
 };
 </script>
