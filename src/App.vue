@@ -9,6 +9,7 @@
     <router-link to="/grid">Grid</router-link> |
     <router-link to="/flex">Flex</router-link> |
     <router-link to="/topachat">Topachat</router-link> |
+    <router-link to="/service">Service</router-link> |
     <router-link to="/sandbox">Sandbox</router-link>
   </div>
   <router-view />

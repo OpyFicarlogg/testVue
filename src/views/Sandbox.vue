@@ -27,7 +27,7 @@
                                 <label for="application">Application</label>
                                 <img :src="getImg('arrow.svg')" alt="">
                                 <div class="floating-label__options">
-                                    <div @click="dropdownInputValue($event,option)" v-for="(option,index) in optionsFilter" :key="index">
+                                    <div @click="searchKey = option" v-for="(option,index) in optionsFilter" :key="index">
                                         {{option}}
                                     </div>
                                 </div>
