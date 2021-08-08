@@ -18,22 +18,22 @@
         <transition name="fade">
             <div class="object__dropdown" v-if="active == index">
 
-                <CustomInput class="object__dropdown__app" type="dropdown" name="Application" :options="options"/>
+                <CustomInput class="object__dropdown__app" type="dropdown" name="Application" :options="options" v-model="dataNew.app"/>
 
                 <CustomInput class="object__dropdown__category" type="dropdown" name="Catégorie" :options="options"/>
 
-                <CustomInput class="object__dropdown__type" type="dropdown" name="Type" :options="options"/>
+                <CustomInput class="object__dropdown__type" type="dropdown" name="Type" :options="options" v-model="dataNew.type"/>
 
-                <CustomInput class="object__dropdown__redirect" type="input" name="Redirect"/>
+                <CustomInput class="object__dropdown__redirect" type="input" name="Redirect" v-model="dataNew.redirect"/>
 
-                <CustomInput class="object__dropdown__request" type="input" name="Request"/>
+                <CustomInput class="object__dropdown__request" type="input" name="Request" v-model="dataNew.request"/>
 
-                <CustomInput class="object__dropdown__description" type="textarea" name="Description"/>
+                <CustomInput class="object__dropdown__description" type="textarea" name="Description" v-model="dataNew.description"/>
                 
                 <button class="object__dropdown__submit" @click="test()">Valider</button>
 
                 <label  class="object__dropdown__opt" >
-                    <input type="checkbox" style="margin-right:10px;" :checked="data.apikey"> 
+                    <input type="checkbox" style="margin-right:10px;" :checked="dataNew.apikey"> 
                     <span>Autoriser la connexion sans Api-Key</span>
                 </label>
 
@@ -47,44 +47,38 @@
 import CustomInput from "@/components/Service/Input.vue";
 
 export default {
-  name: "Object",
-  props: {
+    name: "Object",
+    props: {
        data: {
            type: Object,
            required: true
        },
     },
-  data(){
-    return{
-      options:["a","ab","abc","adb","bad","ba","b"],
-      tags:["tag","tag2","tag4","tag5","tag6"],
-      searchKey:"",
-      active:-1,
-      show: true,
-    }
-  },
-  computed: {
-    optionsFilter(){
-    return this.options.filter((option) => {
-            return option.toLowerCase().includes(this.searchKey);
-    });
+    data(){
+        return{
+            options:["a","Ab","abc","adb","bad","ba","b"],
+            searchKey:"",
+            active:-1,
+            show: true,
+            //https://stackoverflow.com/questions/54078421/how-to-clone-props-object-and-make-it-non-reactive
+            dataNew : Object.assign({}, this.data),
+        }
     },
-    console: () => console,
-    window: () => window,
-  },
-  methods: {
-    getImg(value) {
-        return require("@/assets/" + value);
+    computed: {
     },
-    dropdownInputValue(event,value){
-        var input = event.currentTarget.parentElement.parentElement.getElementsByTagName("input")[0];
-        input.value = value;
-        
-    },    
-  },
-  components: {
-    CustomInput,
-  },
+    methods: {
+        getImg(value) {
+            return require("@/assets/" + value);
+        },
+        dropdownInputValue(event,value){
+            var input = event.currentTarget.parentElement.parentElement.getElementsByTagName("input")[0];
+            input.value = value;
+            
+        },    
+    },
+    components: {
+        CustomInput,
+    },
 };
 </script>
 
