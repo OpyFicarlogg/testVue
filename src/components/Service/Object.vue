@@ -30,7 +30,9 @@
 
                 <CustomInput class="object__dropdown__description" type="textarea" name="Description" v-model="dataNew.description"/>
                 
-                <button class="object__dropdown__submit" @click="test()">Valider</button>
+                <!--<button class="object__dropdown__submit" @click="test()">Valider</button>-->
+                <ButtonSubmit name="Valider" :values="buttonValues"/>
+                <!-- <ButtonSubmit name="Valider" :values="buttonValues"/> --> 
 
                 <label  class="object__dropdown__opt" >
                     <input type="checkbox" style="margin-right:10px;" :checked="dataNew.apikey"> 
@@ -45,6 +47,7 @@
 
 <script>
 import CustomInput from "@/components/Service/Input.vue";
+import ButtonSubmit from "@/components/Service/ButtonSubmit.vue";
 
 export default {
     name: "Object",
@@ -57,6 +60,7 @@ export default {
     data(){
         return{
             options:["a","Ab","abc","adb","bad","ba","b"],
+            buttonValues: ["Annuler","Supprimer", "Close"],
             searchKey:"",
             active:-1,
             show: true,
@@ -78,6 +82,7 @@ export default {
     },
     components: {
         CustomInput,
+        ButtonSubmit,
     },
 };
 </script>
@@ -169,7 +174,6 @@ export default {
         &__dropdown{
             background-color:hsl(0, 0%, 100%);
             border-radius:0px 0px 8px 8px;
-            overflow:hidden; /* ou bien opacity:0*/
             transition: 0.5s ease-in-out;
             height:410px;
             border-top:2px solid hsla(0, 0%, 85%,0.25);
@@ -214,7 +218,7 @@ export default {
                 width:$large-input;
             }
 
-            &__submit{
+            /*&__submit{
                 grid-area: submit;
                 width:110px;
                 border:none;
@@ -222,7 +226,7 @@ export default {
                 border-radius:9px;
                 background-color:#42B466;
                 color:#FFFFFF;
-            }
+            }*/
 
             &__opt{
                 grid-area: opt;
@@ -247,6 +251,7 @@ export default {
   transition:  .7s;
  }
 .fade-enter-from, .fade-leave-to {
+  overflow:hidden; /* ou bien opacity:0*/
   height:0px;
   padding: 0px 60px;
 }
