@@ -33,7 +33,7 @@
             // https://v3.vuejs.org/guide/component-custom-events.html#event-names
             modelValue: {  
                 type: String,
-                required: true,
+                required: false,
             },
             options: {
                 type: Array,

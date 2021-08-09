@@ -63,6 +63,7 @@ export default {
             buttonValues: ["Annuler","Supprimer", "Close"],
             searchKey:"",
             active:-1,
+            index : "",
             show: true,
             //https://stackoverflow.com/questions/54078421/how-to-clone-props-object-and-make-it-non-reactive
             dataNew : Object.assign({}, this.data),

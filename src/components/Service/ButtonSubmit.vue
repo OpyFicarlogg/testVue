@@ -1,11 +1,11 @@
 
 <template>
-    <div class="btn-container">
+    <div class="btn-container" @mouseleave="showMore = false">
         <button :class="[isValues ? 'isOption' : '', 'btn-container__main']" @click="EmitOption(name)" >{{name}}</button>
-        <button class="btn-container__more" v-if="isValues"> 
+        <button class="btn-container__more" v-if="isValues" @click="setShowMore"> 
             <img :src="getImg('arrow.svg')"/>
         </button>
-        <div  ref="button" class="btn-container__options" v-if="isValues">
+        <div  ref="button" class="btn-container__options" v-if="showMore" >
             <div @click="EmitOption(value)" v-for="(value,index) in values" :key="index" >{{value}}</div>   
         </div>
     </div>
@@ -27,6 +27,7 @@
         },
         data(){
             return{
+                showMore : false,
             }
         },
         emits: ['update:modelValue'],
@@ -41,14 +42,22 @@
                 else{
                     return false;
                 }
-            }       
+            }      
         },
         methods: {
             getImg(val) {
                 return require("@/assets/" + val);
             },
             focusInput(){
+                console.log("focus ! ");
                 this.$refs.button.focus();
+            },
+            setShowMore(){
+                this.showMore = this.showMore ? false : true;
+            },
+            EmitOption(name){
+                this.showMore = false;
+                console.log(name);
             }
         },
     };
@@ -88,6 +97,7 @@
         &__options{
             position:absolute;
             width:100%;
+
             div {
                 background-color:aquamarine;
             }
