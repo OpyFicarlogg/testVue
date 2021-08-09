@@ -23,6 +23,7 @@
         height:fit-content;
         max-height:136px;
         min-height:34px;
+        border: 1px solid darken(#ffffff,10%);
     }
 
     &:focus ~ label, &:valid ~ label{
@@ -80,8 +81,9 @@
         position:absolute;
         height: 0px;
         overflow:hidden;
+        border:none;
         transition: 0.1s ease-in-out 0.1s;
-        background-color:rgb(240, 240, 240);
+        background-color:darken(#ffffff,2%);
         //border-radius: 0px 0px 10px 10px;
         width:100%;
         z-index:1;

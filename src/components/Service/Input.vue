@@ -66,7 +66,7 @@
                     return this.modelValue;
                 },
                 set: function(val) {
-                    this.$emit('update:modelValue', val)
+                    this.$emit('update:modelValue', val);
                 }
             },
             

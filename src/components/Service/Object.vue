@@ -20,7 +20,7 @@
 
                 <CustomInput class="object__dropdown__app" type="dropdown" name="Application" :options="options" v-model="dataNew.app"/>
 
-                <CustomInput class="object__dropdown__category" type="dropdown" name="Catégorie" :options="options"/>
+                <CustomInput class="object__dropdown__category" type="dropdown" name="Catégorie" :options="options" v-model="dataNew.category"/>
 
                 <CustomInput class="object__dropdown__type" type="dropdown" name="Type" :options="options" v-model="dataNew.type"/>
 
@@ -250,9 +250,9 @@ export default {
 
 .fade-enter-active, .fade-leave-active {
   transition:  .7s;
+  overflow:hidden;
  }
 .fade-enter-from, .fade-leave-to {
-  overflow:hidden; /* ou bien opacity:0*/
   height:0px;
   padding: 0px 60px;
 }
