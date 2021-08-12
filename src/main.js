@@ -7,10 +7,11 @@ import { BootstrapIconsPlugin } from "bootstrap-icons-vue";
 import "bootstrap/dist/css/bootstrap.min.css";
 import cookie from "./plugins/cookie"; //https://www.npmjs.com/package/vue-cli-plugin-cookie
 import { VueWindowSizePlugin } from 'vue-window-size/option-api';
+import FirstPlugin from "./plugins/firstPlugin.js";
 
 //https://stackoverflow.com/questions/36170425/detect-click-outside-element
 //https://v3.vuejs.org/guide/custom-directive.html#intro
-const outside = {
+/*const outside = {
   beforeMount: (el, binding) => {
       el.clickOutsideEvent = event => {
       // here I check that click was outside the el and his children
@@ -29,8 +30,13 @@ const outside = {
   unmounted: el => {
       document.removeEventListener("click", el.clickOutsideEvent);
   },
-}
+}*/
 
+const i18nStrings = {
+    greetings: {
+      hi: 'Hallo!'
+    }
+  }
 
 createApp(App)
   .use(cookie)
@@ -38,5 +44,6 @@ createApp(App)
   .use(router)
   .use(BootstrapIconsPlugin)
   .use(VueWindowSizePlugin)
-  .directive("click-outside", outside)
+  .use(FirstPlugin,i18nStrings)
+  //.directive("click-outside", outside)
   .mount("#app");

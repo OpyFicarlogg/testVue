@@ -11,13 +11,13 @@
             <div class="elem-left" v-for="card in cards" :key="card.id">
             
             <div class="elem-left__txt"> {{card.tag}} </div>
-            <div class="elem-left__img"><img :src="getImg('account.png')" alt=""></div>
+            <div class="elem-left__img"><img :src="$getImg('account.png')" alt=""></div>
             </div>
         </div>
 
         <div class="container" style="display:none;">
             <div class="elem" v-for="card in cards" :key="card.id">
-            <div class="elem__img"><img :src="getImg('account.png')" alt=""></div>
+            <div class="elem__img"><img :src="$getImg('account.png')" alt=""></div>
             <div class="elem__txt"> {{card.tag}} </div>
             </div>
         </div>
@@ -98,9 +98,6 @@ export default {
         }
     },
     methods:{
-        getImg(value) {
-            return require("@/assets/" + value);
-        },
     },
   
     components: {

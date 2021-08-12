@@ -3,11 +3,17 @@
     <!-- type: dropdown, input, textarea || data: source || name: application --> 
 
     <div class="floating-label">
-        <input v-if="type != 'textarea'" :type="getType(type)" :name="name.toLowerCase()" v-model="localValue" ref="input" required>
+        <input v-if="type != 'textarea'" :type="getType(type)" 
+            :name="name.toLowerCase()" 
+            v-model="localValue"
+            @blur="unfocusInput()"
+            @focus="focusInput()" 
+            ref="input" required>
         <textarea v-if="type == 'textarea'" :name="name.toLowerCase()" v-model="localValue" required></textarea>
         <label :for="name.toLowerCase()">{{name}}</label>
         <!-- TODO: faire la rotate de l'image + fermeture --> 
-        <img v-if="type == 'dropdown'" :src="getImg('arrow.svg')" @click="focusInput()">
+        <img v-if="type == 'dropdown' && !inputFocus" :src="$getImg('arrow.svg')" @click="setFocus()">
+        <img v-if="inputFocus" :src="$getImg('close.png')" @click="clearInput()">
         <div v-if="type == 'dropdown'" class="floating-label__options">
             <div @click="localValue = option" v-for="(option,index) in optionsFilter" :key="index">
                 {{option}}
@@ -42,6 +48,7 @@
         },
         data(){
             return{
+                inputFocus:false,
             }
         
         },
@@ -72,15 +79,27 @@
             
         },
         methods: {
-            // TODO: création d'un plugin pour share la méthode partout https://stackoverflow.com/questions/39373047/include-global-functions-in-vue-js
-            getImg(val) {
-                return require("@/assets/" + val);
-            },
             getType(type){
                 return type == 'dropdown' ? 'input' : type;
             },
+            setFocus(){
+                var input = this.$refs.input;
+
+                input.focus();
+                var strLength = input.value.length * 2;
+                input.setSelectionRange(strLength, strLength);
+
+                console.log(document.activeElement);
+            },
             focusInput(){
-                this.$refs.input.focus();
+                this.inputFocus = true;
+            },
+            unfocusInput(){
+                setTimeout(() => this.inputFocus = false, 100);
+                
+            },
+            clearInput(){
+                this.localValue ="";
             }
         },
     };

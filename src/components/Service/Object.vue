@@ -12,7 +12,7 @@
             </div>
             <div class="object__grid__wsname">{{data.name}}</div>
             <div class="object__grid__dropdown">
-                <img  :class="active==index ? 'svg-rotate' : '' "  :src="getImg('arrow.svg')" alt="">
+                <img  :class="active==index ? 'svg-rotate' : '' "  :src="$getImg('arrow.svg')" alt="">
             </div>
         </div>
         <transition name="fade">
@@ -72,9 +72,6 @@ export default {
     computed: {
     },
     methods: {
-        getImg(value) {
-            return require("@/assets/" + value);
-        },
         dropdownInputValue(event,value){
             var input = event.currentTarget.parentElement.parentElement.getElementsByTagName("input")[0];
             input.value = value;
