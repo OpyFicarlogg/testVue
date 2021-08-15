@@ -68,13 +68,18 @@
         @include floatingLabelInput("textarea");
     }
 
-    & img {
+    &__opt {
         position:absolute;
+        background-color:transparent;
+        border: none;
+
         top: 50%;
         transform: translateX(-30px) translateY(-50%);
-        width:20px;
-        filter: invert(70%) sepia(49%) saturate(0%) hue-rotate(0deg) brightness(95%) contrast(106%);
-        cursor: pointer;
+        
+        & img {
+            width:20px;
+            filter: invert(70%) sepia(49%) saturate(0%) hue-rotate(0deg) brightness(95%) contrast(106%);
+        }
     }
 
     &__options{
@@ -82,7 +87,7 @@
         height: 0px;
         overflow:hidden;
         border:none;
-        transition: 0.1s ease-in-out 0.1s;
+        transition: height 0.1s ease-in-out 0.1s;
         background-color:darken(#ffffff,2%);
         border: 0px solid darken(#ffffff,10%);
         //border-radius: 0px 0px 10px 10px;

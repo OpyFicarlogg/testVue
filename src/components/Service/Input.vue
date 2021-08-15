@@ -12,8 +12,12 @@
         <textarea v-if="type == 'textarea'" :name="name.toLowerCase()" v-model="localValue" required></textarea>
         <label :for="name.toLowerCase()">{{name}}</label>
         <!-- TODO: faire la rotate de l'image + fermeture --> 
-        <img v-if="type == 'dropdown' && !inputFocus" :src="$getImg('arrow.svg')" @click="setFocus()">
-        <img v-if="inputFocus" :src="$getImg('close.png')" @click="clearInput()">
+        <button class="floating-label__opt" v-if="type == 'dropdown' && !inputFocus" @click="setFocus()" >
+            <img :src="$getImg('arrow.svg')" >
+        </button>
+        <button class="floating-label__opt" v-if="inputFocus" @click="clearInput()">
+            <img :src="$getImg('close.png')">
+        </button>
         <div v-if="type == 'dropdown'" class="floating-label__options">
             <div @click="localValue = option" v-for="(option,index) in optionsFilter" :key="index">
                 {{option}}
@@ -95,7 +99,7 @@
                 this.inputFocus = true;
             },
             unfocusInput(){
-                setTimeout(() => this.inputFocus = false, 100);
+                setTimeout(() => this.inputFocus = false, 200);
                 
             },
             clearInput(){
