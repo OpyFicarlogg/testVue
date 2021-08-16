@@ -1,8 +1,17 @@
-@mixin tag{
-    color: #A0A0A0;
+@mixin tag($invert : false){
+
+    @if($invert){
+        color: #FFF;
+        background-color:#C6C6C6;
+    }
+    @else{
+        color: $text-main;
+        background-color:$text-background;
+    }
+    
     height:25px;
     line-height:25px;
     border-radius:5px;
     text-align: center;
-    background-color:#F1F1F1;
+    
 }

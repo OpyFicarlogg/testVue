@@ -8,7 +8,7 @@
             <div class="object__grid__app">{{data.app}}</div>
             <div class="object__grid__tags" >
                 <div v-for="(categorie,index) in data.categories" :key="index" >{{categorie}}</div>
-                <div>{{data.type}} </div>
+                <div class="type">{{data.type}} </div>
             </div>
             <div class="object__grid__wsname">{{data.name}}</div>
             <div class="object__grid__dropdown">
@@ -120,15 +120,15 @@ export default {
             &__img{
                 text-align:center;
                 grid-area:img;
-                
+
                 display:flex;
                 justify-content:center;
                 align-items:center;
 
                 & div { 
                     border-radius:50%;
-                    background-color:rgb(226, 226, 226);
-                    color: rgb(187, 187, 187);
+                    background-color:$text-background;
+                    color: $text-main;
                     width: 50px;
                     height: 50px;
                     font-size: 32px;
@@ -151,6 +151,11 @@ export default {
                 
                 & div {
                     @include tag();
+                    margin-right:30px;
+                    width:100px;
+                }
+                & .type {
+                    @include tag(true);
                     margin-right:30px;
                     width:100px;
                 }
