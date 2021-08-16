@@ -7,7 +7,7 @@
             <div class="object" v-for="index in 10" :key="index">
                     <div :class=" active == index ? 'object__grid active' : 'object__grid'" @click="active != index ? active=index : active = -1">
                         <div class="object__grid__img">
-                            <div class="dot">A</div>
+                            <img  src="https://www.google.com/photos/about/static/images/logos/logo_photos_192px.svg" alt="">
                         </div>
                         <div class="object__grid__app">Application</div>
                         <div class="object__grid__tags">
@@ -137,14 +137,6 @@ export default {
     @import "@/assets/css/Composants/_inputs.scss";
 
     
-    .dot {
-        border-radius:50%;
-        background-color:rgb(226, 226, 226);
-        color: rgb(187, 187, 187);
-        width: 50px;
-        height: 50px;
-        font-size: 32px;
-    }
     
 
 
@@ -191,9 +183,6 @@ export default {
             &__img{
                 text-align:center;
                 grid-area:img;
-                display:flex;
-                justify-content:center;
-                align-items:center;
 
                 & img {
                     width:50px;

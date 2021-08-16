@@ -3,7 +3,7 @@
     <div class="object">
         <div :class=" active == index ? 'object__grid active' : 'object__grid'" @click="active != index ? active=index : active = -1">
             <div class="object__grid__img">
-                <img  src="https://www.google.com/photos/about/static/images/logos/logo_photos_192px.svg" alt="">
+                <div>{{data.app.substring(0,1)}}</div>
             </div>
             <div class="object__grid__app">{{data.app}}</div>
             <div class="object__grid__tags" >
@@ -120,9 +120,18 @@ export default {
             &__img{
                 text-align:center;
                 grid-area:img;
+                
+                display:flex;
+                justify-content:center;
+                align-items:center;
 
-                & img {
-                    width:50px;
+                & div { 
+                    border-radius:50%;
+                    background-color:rgb(226, 226, 226);
+                    color: rgb(187, 187, 187);
+                    width: 50px;
+                    height: 50px;
+                    font-size: 32px;
                 }
             }
 
