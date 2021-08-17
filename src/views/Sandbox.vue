@@ -54,8 +54,7 @@
                                 <label for="request">Request</label>
                             </div>
                             <div class="object__dropdown__description floating-label">
-                                <textarea   name="description" required></textarea>
-                                <label for="description">Description</label>
+                                <Selector :values="values" v-model="model"/>
                             </div>
                             
                             <button class="object__dropdown__submit" @click="test()">Valider</button>
@@ -90,6 +89,8 @@
 </template>
 
 <script>
+import Selector from "@/components/Service/Selector.vue";
+
 export default {
   name: "Sandbox",
   data(){
@@ -101,6 +102,8 @@ export default {
         {id:4, title: "Pascal", tag:"epic",state:false},
         {id:5, title: "Eric", tag:"epic",state:false},
       ],
+      values: ["public","private","maintenance","disable"],
+      model: "",
       options:["a","ab","abc","adb","bad","ba","b"],
       searchKey:"",
       active:-1,
@@ -124,8 +127,11 @@ export default {
         var input = event.currentTarget.parentElement.parentElement.getElementsByTagName("input")[0];
         input.value = value;
         
-    },    
+    },   
   },
+  components: {
+        Selector,
+  }, 
 };
 </script>
 
@@ -266,14 +272,24 @@ export default {
           
             &__app{
                 grid-area: app;
+
+                & img {
+                    display:none;
+                }
             }
 
             &__category{
                 grid-area: category;
+                & img {
+                    display:none;
+                }
             }
 
             &__type{
                 grid-area: type;
+                & img {
+                    display:none;
+                }
             }
 
             &__redirect{
@@ -289,6 +305,7 @@ export default {
             &__description{
                 grid-area: description;
                 width:$large-input;
+                
             }
 
             &__submit{

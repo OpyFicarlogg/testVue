@@ -3,7 +3,7 @@
     <div class="btn-container" v-outside="() => showMore = false">
         <button :class="[isValues ? 'isOption' : '', 'btn-container__main']" @click="EmitOption(name)" >{{name}}</button>
         <button :class="['btn-container__more']" v-if="isValues" @click="setShowMore"> 
-            <img :src="getImg('arrow.svg')"/>
+            <img :src="$getImg('arrow.svg')"/>
         </button>
         <div  ref="button" class="btn-container__options" v-if="showMore" >
             <button @click="EmitOption(value)" v-for="(value,index) in values" :key="index" >{{value}}</button>   
@@ -45,9 +45,6 @@
             }      
         },
         methods: {
-            getImg(val) {
-                return require("@/assets/" + val);
-            },
             setShowMore(){
                 console.log(this.showMore);
                 this.showMore = this.showMore ? false : true;
