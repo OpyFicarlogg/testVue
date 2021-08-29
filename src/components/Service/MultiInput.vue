@@ -9,7 +9,6 @@
             @blur="unfocusInput()"
             @focus="focusInput()" 
             ref="input" required>
-        <textarea v-if="type == 'textarea'" :name="name.toLowerCase()" v-model="localValue" required></textarea>
         <label :for="name.toLowerCase()">{{name}}</label>
         <!-- TODO: faire la rotate de l'image + fermeture --> 
         <button class="floating-label__opt" v-if="type == 'dropdown' && !inputFocus" @click="setFocus()" >

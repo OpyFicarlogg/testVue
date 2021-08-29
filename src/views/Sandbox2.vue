@@ -3,13 +3,14 @@
   <div id="app">
     <div class="dropdown">
       <div class="dropdown__elem" ref="input">
+          
           <div v-for="(opt,index) in selectedFilter" :key="index">{{opt}}</div>
       </div>
       <!-- problème si recherche --> 
       <div class="dropdown__content">
         <input type="text" v-model="inputVal"/>
+        <!-- sous composant avec un click ou autre pour faire une action de selection-->
         <div @click="addToList(option, $event)" v-for="(option,index) in optionsFilter" :key="index">{{option}}</div>
-        <div>heeeeey {{overflow}}</div>
       </div>
     </div>
   </div>
@@ -27,16 +28,19 @@ export default {
       inputVal: "",
       ov:"",
 
-      padding : 5*2,
-      margin : 15*2,
+      padding : 10*2,
+      margin : 10*2,
 
+      field: "Catégorie",
       currentSize:0,
       inputSize:0,
       isOverflow:false,
     };
   },
   mounted(){
+    //Set initial value of input size
     this.inputSize= this.$refs.input.clientWidth;
+    //Change input size on resize 
     window.addEventListener("resize", this.handleResolutionChange);
     
   },
@@ -52,8 +56,6 @@ export default {
     },
     
     addToList(value,event) {
-
-      //this.inputSize= this.$refs.input.clientWidth;
 
       if(this.selected.includes(value)){
 
@@ -74,7 +76,7 @@ export default {
       }
       //https://stackoverflow.com/questions/59392865/how-to-detect-whether-an-element-inside-a-component-is-overflown-in-vue
       //https://www.codegrepper.com/code-examples/javascript/javascript+check+if+element+is+overflowing
-      //permet de détecter après l'ajout de l'élément
+      //permet de détecter après l'ajout de l'élément NOT USED
       setTimeout(() => this.ov = this.$refs.input.clientWidth < this.$refs.input.scrollWidth, 200);
       
     },
@@ -115,25 +117,17 @@ export default {
 
   },
   computed:{
+    //computed property for search 
     optionsFilter(){      
         return this.values.filter((value) => {
           return value.toLowerCase().includes(this.inputVal);
         });
     },
-    //Définir la taille dynamiquement 
+    //Définir la taille dynamiquement et le nombre d'éléments affiché
     selectedFilter(){
-      /*var length = this.selected.length;
-      if(length > 3){
-         var local = this.selected.slice(0,2);
-         local.push("+"+(length -2));
-         return local;
-      }
-      else{
-        return this.selected;
-      }*/
 
       if(this.isOverflow){
-          var text = "{x} Catégories";
+          var text = "{x} "+this.field;
           var textSize = (this.textSize(text))+this.padding+this.margin;
           var size = 0;
           var selectedIndex =null;
@@ -141,9 +135,7 @@ export default {
           //permet de définir à partir de quel index on overflow
           this.selected.forEach((element, index) => {
             size+= (this.textSize(element))+this.padding+this.margin;
-            console.log("size: "+size);
             if(selectedIndex == null){
-              console.log("size :"+(size+textSize) + "  || index: "+index);
                selectedIndex = this.inputSize < (size+textSize) ? index:null;
             }
             
@@ -151,11 +143,11 @@ export default {
 
           //Savoir combien d'éléments il reste hors ceux à afficher
           var count = this.selected.length - selectedIndex;
-          console.log("selectedIndex :"+selectedIndex + " || count: "+count);
           var local = this.selected.slice(0,selectedIndex);
           local.push(text.replace( '{x}',count));
           return local;
 
+          //Display toujours le nombre d'éléments
           /*var local = [];
           local.push(this.selected.length +" Catégories");
           return local;*/
@@ -164,23 +156,7 @@ export default {
           return this.selected;
       }
       
-    },
-
-    overflow(){
-     
-      if(this.ov != null){
-        var count = this.ov.childElementCount;
-        console.log("overflow: "+count);
-        var isOverflowing = this.ov.clientWidth < this.ov.scrollWidth 
-        || this.ov.clientHeight < this.ov.scrollHeight;
-        return isOverflowing;
-      }
-      else{
-        return false;
-      }
-      
-      
-    }
+    },      
   },
 };
 </script>
@@ -208,10 +184,12 @@ export default {
     
     & div {
       height:20px;
-      background-color:white;
+      background-color:#42B466;
+      border-radius: 8px;
+      color:white;
       line-height:20px;
-      padding:5px;
-      margin: 0px 15px;
+      padding:0px 10px 0px 10px;
+      margin: 0px 10px;
     }
   }
   
