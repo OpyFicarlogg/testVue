@@ -10,7 +10,8 @@
     <router-link to="/flex">Flex</router-link> |
     <router-link to="/topachat">Topachat</router-link> |
     <router-link to="/service">Service</router-link> |
-    <router-link to="/sandbox">Sandbox</router-link>
+    <router-link to="/sandbox">Sandbox</router-link> |
+    <router-link to="/sandbox2">Sandbox2</router-link>
   </div>
   <router-view />
 </template>

@@ -45,10 +45,8 @@
                                 <img :src="getImg('arrow.svg')" alt="">
                             </div>
 
-                            <div class="object__dropdown__redirect floating-label">
-                                <input type="text" name="redirect"  required>
-                                 <label for="redirect">Redirect</label>
-                            </div>
+                            <MultiInput class="object__dropdown__redirect" type="dropdown" name="Catégorie" :options="options" v-model="modelMultiInput"/>
+
                             <div class="object__dropdown__request floating-label">
                                 <input type="text" name="request"  required>
                                 <label for="request">Request</label>
@@ -90,6 +88,7 @@
 
 <script>
 import Selector from "@/components/Service/Selector.vue";
+import MultiInput from "@/components/Service/MultiInput.vue";
 
 export default {
   name: "Sandbox",
@@ -104,6 +103,7 @@ export default {
       ],
       values: ["public","private","maintenance","disable"],
       model: "",
+      modelMultiInput: "",
       options:["a","ab","abc","adb","bad","ba","b"],
       searchKey:"",
       active:-1,
@@ -130,7 +130,7 @@ export default {
     },   
   },
   components: {
-        Selector,
+        Selector, MultiInput
   }, 
 };
 </script>

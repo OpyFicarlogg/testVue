@@ -96,6 +96,15 @@ const routes = [
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/Sandbox.vue"),
   },
+  {
+    path: "/sandbox2",
+    name: "Sandbox2",
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () =>
+      import(/* webpackChunkName: "about" */ "../views/Sandbox2.vue"),
+  },
 ];
 
 const router = createRouter({
