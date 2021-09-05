@@ -4,13 +4,13 @@
     <div class="dropdown">
       <div class="dropdown__elem" ref="input">
           
-          <div v-for="(opt,index) in selectedFilter" :key="index">{{opt}}</div>
+          <div v-for="opt in selectedFilter" :key="opt.id">{{opt.value}}</div>
       </div>
       <!-- problème si recherche --> 
       <div class="dropdown__content">
         <input type="text" v-model="inputVal"/>
         <!-- sous composant avec un click ou autre pour faire une action de selection-->
-        <div @click="addToList(option, $event)" v-for="(option,index) in optionsFilter" :key="index">{{option}}</div>
+        <div :class="selected.includes(option) ? 'selected' :''" @click="addToList(option)" v-for="(option) in optionsFilter" :key="option.id">{{option.value}}</div>
       </div>
     </div>
   </div>
@@ -23,7 +23,7 @@ export default {
   name: "Sandbox2",
   data() {
     return {
-      values: ["val1abcdae","val2","val3","test","yolo","kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk"],
+      values: [{id:1,value:"val1abcdae"},{id:2,value:"val2"},{id:3,value:"val3"},{id:4,value:"test"},{id:5,value:"yolo"},{id:6,value:"kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk"}],
       selected : [],
       inputVal: "",
       ov:"",
@@ -51,16 +51,16 @@ export default {
     },
     detectInputOverflow(){
       this.currentSize=0;
-      this.selected.forEach(element =>  this.currentSize+= (this.textSize(element))+this.padding+this.margin);
+      this.selected.forEach(element =>  this.currentSize+= (this.textSize(element.value))+this.padding+this.margin);
       this.isOverflow = this.inputSize < this.currentSize;
     },
     
-    addToList(value,event) {
+    addToList(value) {
 
       if(this.selected.includes(value)){
 
         this.removeArray(this.selected, value);
-        event.target.classList.remove("selected");
+        //event.target.classList.remove("selected");
 
         this.detectInputOverflow();
         
@@ -72,7 +72,7 @@ export default {
         this.isOverflow = this.inputSize < this.currentSize;
 
         this.selected.push(value);
-        event.target.classList.add("selected");  
+        //event.target.classList.add("selected");  
       }
       //https://stackoverflow.com/questions/59392865/how-to-detect-whether-an-element-inside-a-component-is-overflown-in-vue
       //https://www.codegrepper.com/code-examples/javascript/javascript+check+if+element+is+overflowing
@@ -120,7 +120,7 @@ export default {
     //computed property for search 
     optionsFilter(){      
         return this.values.filter((value) => {
-          return value.toLowerCase().includes(this.inputVal);
+          return value.value.toLowerCase().includes(this.inputVal);
         });
     },
     //Définir la taille dynamiquement et le nombre d'éléments affiché
@@ -134,7 +134,7 @@ export default {
 
           //permet de définir à partir de quel index on overflow
           this.selected.forEach((element, index) => {
-            size+= (this.textSize(element))+this.padding+this.margin;
+            size+= (this.textSize(element.value))+this.padding+this.margin;
             if(selectedIndex == null){
                selectedIndex = this.inputSize < (size+textSize) ? index:null;
             }
@@ -144,7 +144,7 @@ export default {
           //Savoir combien d'éléments il reste hors ceux à afficher
           var count = this.selected.length - selectedIndex;
           var local = this.selected.slice(0,selectedIndex);
-          local.push(text.replace( '{x}',count));
+          local.push({id:null, value: text.replace( '{x}',count)});
           return local;
 
           //Display toujours le nombre d'éléments
