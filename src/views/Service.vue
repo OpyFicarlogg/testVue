@@ -110,7 +110,7 @@ export default {
 
     .main{
         position:absolute;
-        background-color:hsl(213, 29%, 85%);
+        background-color:#f9f9f9;
         min-height:100vh;
         width:100%;
     }

@@ -98,9 +98,11 @@ export default {
         width:1000px;
         max-width:1000px;
         margin: 0 auto;
+        
         &__grid{
             height:120px;
             background-color:hsl(0, 0%, 100%);
+            box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.25);
             border-radius:8px;
             transition: border-radius .5s ease-out;
             text-align:initial;
@@ -186,6 +188,7 @@ export default {
         &__dropdown{
             background-color:hsl(0, 0%, 100%);
             border-radius:0px 0px 8px 8px;
+            box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.25);
             transition: 0.5s ease-in-out;
             height:410px;
             border-top:2px solid hsla(0, 0%, 85%,0.25);

@@ -156,7 +156,7 @@ export default {
 
     .main{
         position:absolute;
-        background-color:hsl(213, 29%, 85%);
+        background-color:#f9f9f9;
         min-height:100vh;
         width:100%;
     }
@@ -175,6 +175,8 @@ export default {
         width:1000px;
         max-width:1000px;
         margin: 0 auto;
+        box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.25);
+
         &__grid{
             height:120px;
             background-color:hsl(0, 0%, 100%);
