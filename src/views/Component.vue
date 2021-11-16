@@ -44,7 +44,7 @@ export default {
           id: 1,
           name: "burger",
           price: "13",
-          description: "Un bon burger sa mère",
+          description: "Un bon burger",
         },
         {
           id: 2,

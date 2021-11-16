@@ -18,14 +18,6 @@
         border-bottom: 2px solid #42B466
     }
 
-    &:focus ~ .floating-label__options{
-        overflow:hidden auto;
-        height:fit-content;
-        max-height:136px;
-        min-height:34px;
-        border: 1px solid darken(#ffffff,10%);
-    }
-
     &:focus ~ label, &:valid ~ label{
         opacity: .85;
 
@@ -69,6 +61,7 @@
     }
 
     &__opt {
+        //opacity : 0;
         position:absolute;
         background-color:transparent;
         border: none;
@@ -79,6 +72,11 @@
         & img {
             width:20px;
             filter: invert(70%) sepia(49%) saturate(0%) hue-rotate(0deg) brightness(95%) contrast(106%);
+        }
+
+        
+        &.active{
+            opacity : 1;
         }
     }
 
@@ -100,6 +98,14 @@
                 background-color:darken(rgb(240, 240, 240), 5);
                 cursor: pointer;
             }
+        }
+
+        &.active {
+            overflow:hidden auto;
+            height:fit-content;
+            max-height:136px;
+            min-height:34px;
+            border: 1px solid darken(#ffffff,10%);
         }
     }    
 }

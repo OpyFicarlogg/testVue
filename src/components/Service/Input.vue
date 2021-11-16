@@ -2,12 +2,11 @@
 <template>
     <!-- type: dropdown, input, textarea || data: source || name: application --> 
 
-    <div class="floating-label">
+    <div class="floating-label"  @blur.capture="unfocusInput($event)">
         <input v-if="type != 'textarea'" :type="getType(type)" 
             :name="name.toLowerCase()" 
             v-model="localValue"
-            @blur="unfocusInput()"
-            @focus="focusInput()" 
+            @focus.capture="focusInput()"
             ref="input" required>
         <textarea v-if="type == 'textarea'" :name="name.toLowerCase()" v-model="localValue" required @blur="unfocusInput()"
             @focus="focusInput()"></textarea>
@@ -19,8 +18,8 @@
         <button class="floating-label__opt" v-if="inputFocus" @click="clearInput()">
             <img :src="$getImg('close.png')">
         </button>
-        <div v-if="type == 'dropdown'" class="floating-label__options">
-            <div @click="localValue = option" v-for="(option,index) in optionsFilter" :key="index">
+        <div v-if="type == 'dropdown'" :class="['floating-label__options', inputFocus ? 'active' : '']">
+            <div @click="optionClick(option)" v-for="(option,index) in optionsFilter" :key="index" tabindex="-1">
                 {{option}}
             </div>
         </div>
@@ -94,17 +93,27 @@
                 var strLength = input.value.length * 2;
                 input.setSelectionRange(strLength, strLength);
 
-                console.log(document.activeElement);
+                this.inputFocus = true;
             },
             focusInput(){
                 this.inputFocus = true;
             },
-            unfocusInput(){
-                setTimeout(() => this.inputFocus = false, 300);
+            unfocusInput(event){
+                //https://forum.vuejs.org/t/focus-event-on-input-field/28174
+                //setTimeout(() => this.inputFocus = false, 300);
+                //https://stackoverflow.com/questions/12092261/prevent-firing-the-blur-event-if-any-one-of-its-children-receives-focus
+                if (!event.currentTarget.contains(event.relatedTarget)) {
+                    this.inputFocus = false;
+                }
                 
             },
             clearInput(){
                 this.localValue ="";
+                this.inputFocus = false;
+            },
+            optionClick(value){
+                this.localValue = value;
+                this.inputFocus = false;
             }
         },
     };

@@ -72,6 +72,7 @@
 
         & div {
             @include selectorValue();
+            background-color: #f1f1f1;
             color: #5f6368;
         }
     }
